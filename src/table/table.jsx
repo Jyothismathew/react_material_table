@@ -72,5 +72,5 @@ SimpleTable.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   classes: PropTypes.object.isRequired,
 };
-
+// http://codekirei.com/posts/currying-with-arrow-functions/
 export default withStyles(styles)(SimpleTable);
