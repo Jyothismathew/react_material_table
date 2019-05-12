@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -27,18 +28,34 @@ function createData(name, calories, fat, carbs, protein) {
   };
 }
 // TO DO fetch from  api
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 // TO DO create sortable table
 function SimpleTable(props) {
   const { classes } = props;
+  const [initialized, setInitialized] = useState(false);
+  const [rows, setRows] = useState(false);
 
-  return (
+  useEffect(() => {
+    if (!initialized) {
+      axios
+        .get(
+          'https://gist.githubusercontent.com/witalewski/fc8f043d53a0d505f84c5ddb04ae76ea/raw/7c505bbc1675a0bc8a067f8b633b531c769bb64c/data.json',
+        )
+        .then(({ data }) => {
+          // eslint-disable-next-line no-console
+          console.log('>>>>>>>.', data);
+          setRows([
+            createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+            createData('Eclair', 262, 16.0, 24, 6.0),
+            createData('Cupcake', 305, 3.7, 67, 4.3),
+            createData('Gingerbread', 356, 16.0, 49, 3.9),
+          ]);
+        });
+      setInitialized(true);
+    }
+  });
+
+  return rows && (
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
