@@ -1,3 +1,9 @@
+ - [ ] make table sortable
+ - [ ] link to mock service
+ - [ ] integrate junit
+ - [ ] Production code settings
+ - [ ] Split in to containter and presentation component
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
